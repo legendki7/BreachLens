@@ -1,0 +1,8 @@
+define bot refuse guarded content
+  "The content was blocked by the configured input guardrail."
+
+define flow red team arena input rail
+  $should_block = execute rta_nemo_check_input
+  if $should_block
+    bot refuse guarded content
+    stop

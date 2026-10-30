@@ -1,0 +1,9 @@
+colang_version: "1.0"
+
+rails:
+  input:
+    flows:
+      - red team arena input rail
+  output:
+    flows:
+      - red team arena output rail

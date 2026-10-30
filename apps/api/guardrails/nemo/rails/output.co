@@ -1,0 +1,8 @@
+define bot refuse guarded output
+  "The content was blocked by the configured output guardrail."
+
+define flow red team arena output rail
+  $should_block = execute rta_nemo_check_output
+  if $should_block
+    bot refuse guarded output
+    stop
