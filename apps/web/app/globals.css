@@ -6,10 +6,106 @@
   color-scheme: dark;
 }
 
-body {
-  margin: 0;
-  background: #09090b;
-  color: #fafafa;
-  font-family: Arial, Helvetica, sans-serif;
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: #0a0a0b;
+  color: #edeae4;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(253, 24, 34, 0.35);
+  color: #f6f4ef;
+}
+
+:focus-visible {
+  outline: 2px solid #f6f4ef;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+@layer components {
+  .page-x {
+    @apply mx-auto w-full max-w-page px-4 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[0.8125rem] uppercase tracking-[0.14em] text-bone-300;
+  }
+
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-[3px] px-5 text-[0.9375rem] font-semibold transition-colors duration-150;
+  }
+
+  .btn-primary {
+    @apply btn bg-signal text-white hover:bg-[#e3141d] active:bg-signal-deep;
+  }
+
+  .btn-secondary {
+    @apply btn border border-ink-500 text-bone-50 hover:border-bone-300 hover:bg-ink-800;
+  }
+}
+
+/* Countdown fill for the current walkthrough step. */
+@keyframes step-fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.step-fill {
+  transform-origin: left center;
+  animation-name: step-fill;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+/* Starts partly visible so content stays readable even if animations are throttled. */
+@keyframes stage-in {
+  from {
+    opacity: 0.45;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.stage-in {
+  animation: stage-in 260ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .step-fill {
+    display: none;
+  }
+}

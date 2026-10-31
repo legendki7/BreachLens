@@ -21,8 +21,9 @@ Compose requires a non-empty externally supplied `POSTGRES_PASSWORD`, via proces
 | POSTGRES_PORT | `5432` |
 | DATABASE_URL | Construct a `postgresql+asyncpg` URL for your chosen database/user/password, host and port; percent-encode URL credentials as needed |
 | NEXT_PUBLIC_API_URL | `http://localhost:8000` |
+| NEXT_PUBLIC_SITE_URL | Public origin of the deployed website (for example `https://<your-domain>`). Required before a production build so Open Graph and Twitter image URLs are absolute; when unset, Next.js falls back to `http://localhost:3000` and prints a build warning. |
 
-The root environment file is used by the API and the documented Compose command. Supply `NEXT_PUBLIC_API_URL` separately to the frontend process or in `apps/web/.env.local`. Browser-exposed variables must never contain secrets.
+The root environment file is used by the API and the documented Compose command. Supply `NEXT_PUBLIC_API_URL` and `NEXT_PUBLIC_SITE_URL` separately to the frontend process or in `apps/web/.env.local`. Browser-exposed variables must never contain secrets.
 
 ## Publication review
 
