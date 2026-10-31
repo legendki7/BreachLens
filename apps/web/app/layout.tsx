@@ -19,9 +19,9 @@ const mono = IBM_Plex_Mono({
 const description =
   "BreachLens tests AI applications with controlled adversarial prompts and records two separate results for every attempt: how the model behaved, and whether the guardrails around it held.";
 
-// Public origin used to build absolute sharing URLs. Social crawlers need absolute
-// image URLs, so the image tags are emitted only when NEXT_PUBLIC_SITE_URL is set at
-// build time; without it no localhost URL is baked into the page.
+// Public origin used to build absolute canonical and sharing URLs. These tags are
+// emitted only when NEXT_PUBLIC_SITE_URL is set at build time; without it no localhost
+// URL is baked into the page.
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || undefined;
 
 const socialImages = siteUrl
@@ -36,7 +36,7 @@ const socialImages = siteUrl
   : undefined;
 
 export const metadata: Metadata = {
-  ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
+  ...(siteUrl ? { metadataBase: new URL(siteUrl), alternates: { canonical: "/" } } : {}),
   title: "BreachLens — See where the model breaks, and where the system holds",
   description,
   applicationName: "BreachLens",

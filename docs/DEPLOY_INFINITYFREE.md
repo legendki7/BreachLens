@@ -1,5 +1,8 @@
 # Deploying the landing page to InfinityFree
 
+> The landing page is now hosted on Railway; see [Railway deployment](DEPLOY_RAILWAY.md).
+> This static-export option remains available for file-only hosts.
+
 InfinityFree serves static files with Apache. It cannot run Node.js or Python, so it
 can host only the **public landing page** and its browser-based illustrative demo. The
 demo uses simulated data and makes no model or API calls. The FastAPI backend, the
@@ -20,8 +23,8 @@ npm run build:static
 and it fails if the export references `localhost` or a development-only page.
 
 Regular `npm run dev`, `npm run build`, and `npm run start` are unchanged. The local API
-health check (`/api-health`, file `app/api-health/page.dev.tsx`) is available there but
-is intentionally left out of the static export.
+health check (`/api-health`, file `app/api-health/page.dev.tsx`) exists only under
+`npm run dev`; it is left out of production builds and the static export.
 
 ## 2. Set the final site URL, then rebuild
 
